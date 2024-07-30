@@ -1,5 +1,19 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+vim.keymap.set('n','<leader>td', (function()
+    local diag_status = 1 -- 1 is show; 0 is hide
+    return function()
+      if diag_status == 1 then
+        diag_status = 0
+        vim.diagnostic.hide()
+      else
+        diag_status = 1
+        vim.diagnostic.show()
+      end
+    end
+  end)()
+)
+
 -- telescope 
 local builtin = require "telescope.builtin"
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
